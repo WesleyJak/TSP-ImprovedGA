@@ -16,6 +16,8 @@ example_matrix = [
         [20, 25, 30, 0]
         ]
 
-new_graph = generate_graph(nodes=4, complete=True, graph_matrix=example_matrix)
-print(new_graph.get_num_nodes())
+given_graph = generate_graph(nodes=4, edges=12, graph_matrix=example_matrix)
+#given_graph.print_graph()
+
+new_graph = generate_graph(nodes=8, edges=20)
 new_graph.print_graph()
