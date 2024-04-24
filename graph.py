@@ -1,4 +1,7 @@
-import networkx
+import networkx as nx
+import random
+import numpy as np
+import matplotlib.pyplot as plt
 
 class Graph():
     def __init__(self, nodes, complete, graph_matrix=None):
@@ -9,7 +12,7 @@ class Graph():
             return
         else:
             if len(graph_matrix) == nodes:
-                return
+                self.graph = nx.from_numpy_array(np.array(graph_matrix))
             else:
                 raise ValueError("Number of nodes not equal to dim of graph_matrix.")
 
@@ -17,8 +20,8 @@ class Graph():
         return self.nodes
     
     def print_graph(self):
-        return
-
+        nx.draw(self.graph)
+        plt.show()
 
 # Take a number of nodes and an option of complete or noncomplete. Generate the graph and return it.
 # Either complete or noncomplete will be an adjacency matrix

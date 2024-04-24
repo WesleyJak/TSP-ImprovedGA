@@ -17,4 +17,5 @@ example_matrix = [
         ]
 
 new_graph = generate_graph(nodes=4, complete=True, graph_matrix=example_matrix)
-new_graph.get_num_nodes()
+print(new_graph.get_num_nodes())
+new_graph.print_graph()
