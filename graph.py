@@ -3,7 +3,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 
-
+# A tool for generating new graphs, processing existing graphs (as arrays), and visualizing graphs.
 class Graph():
     def __init__(self, nodes, edges, graph_matrix=None):
         self.nodes = nodes
@@ -12,7 +12,6 @@ class Graph():
             # if there is no new graph, generate one
             self.graph = nx.Graph()
             self.graph.add_nodes_from(range(nodes))
-
             for i in range(edges):
                  u, v = random.sample(range(nodes), 2)
                  weight = int(random.uniform(0, 100))
@@ -26,13 +25,18 @@ class Graph():
     def get_num_nodes(self):
         return self.nodes
     
+    def get_num_edges(self):
+        return self.edges
+    
+    def get_graph(self):
+        return nx.to_numpy_array(self.graph)
+    
     def print_graph(self):
         pos = nx.spring_layout(self.graph)
         plt.figure()
         edge_labels = {(u, v): f'{self.graph[u][v]["weight"]}' for u, v in self.graph.edges()}
 
         nx.draw(self.graph, pos)
-
         nx.draw_networkx_edge_labels(self.graph, pos, edge_labels)
 
         plt.axis('off')
