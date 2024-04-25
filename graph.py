@@ -15,17 +15,18 @@ class Graph():
             for i in range(edges):
                  u, v = random.sample(range(nodes), 2)
                  weight = int(random.uniform(0, 100))
+                 print(weight)
                  self.graph.add_edge(u, v, weight=weight)
             # make max range of 1000 if not exist (for unconnected weights)
             graph_arr = nx.to_numpy_array(self.graph)
-            for i in range(nodes):
-                for j in range(edges):
-                    if i != j and graph_arr[i][j] == 0:
-                        graph_arr[i][j] = 1000
-            self.graph = nx.from_numpy_array(graph_arr)
+            for index, weight in np.ndenumerate(graph_arr):
+                if (index[0] != index[1]) and weight == 0:
+                    graph_arr[index] = 1000
+            self.solving_graph = nx.from_numpy_array(graph_arr)
         else:
             if len(graph_matrix) == nodes:
                 self.graph = nx.from_numpy_array(np.array(graph_matrix))
+                self.solving_graph = self.graph
             else:
                 raise ValueError("Number of nodes not equal to dim of graph_matrix.")
 
@@ -36,7 +37,7 @@ class Graph():
         return self.edges
     
     def get_graph(self):
-        return nx.to_numpy_array(self.graph)
+        return nx.to_numpy_array(self.solving_graph)
     
     def print_graph(self):
         pos = nx.spring_layout(self.graph)
