@@ -15,7 +15,6 @@ class Graph():
             for i in range(edges):
                  u, v = random.sample(range(nodes), 2)
                  weight = int(random.uniform(0, 100))
-                 print(weight)
                  self.graph.add_edge(u, v, weight=weight)
             # make max range of 1000 if not exist (for unconnected weights)
             graph_arr = nx.to_numpy_array(self.graph)
