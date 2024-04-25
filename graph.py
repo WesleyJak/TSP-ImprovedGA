@@ -16,6 +16,13 @@ class Graph():
                  u, v = random.sample(range(nodes), 2)
                  weight = int(random.uniform(0, 100))
                  self.graph.add_edge(u, v, weight=weight)
+            # make max range of 1000 if not exist (for unconnected weights)
+            graph_arr = nx.to_numpy_array(self.graph)
+            for i in range(nodes):
+                for j in range(edges):
+                    if i != j and graph_arr[i][j] == 0:
+                        graph_arr[i][j] = 1000
+            self.graph = nx.from_numpy_array(graph_arr)
         else:
             if len(graph_matrix) == nodes:
                 self.graph = nx.from_numpy_array(np.array(graph_matrix))
