@@ -37,6 +37,7 @@ class Graph():
         edge_labels = {(u, v): f'{self.graph[u][v]["weight"]}' for u, v in self.graph.edges()}
 
         nx.draw(self.graph, pos)
+        nx.draw_networkx_labels(self.graph, pos)
         nx.draw_networkx_edge_labels(self.graph, pos, edge_labels)
 
         plt.axis('off')
